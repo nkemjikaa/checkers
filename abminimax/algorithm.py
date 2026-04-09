@@ -1,4 +1,11 @@
-import pygame
+# abminimax/algorithm.py
+
+# Remove the import pygame from the top!
+# Only import it if it's actually installed/available
+try:
+    import pygame
+except ImportError:
+    pygame = None
 from copy import deepcopy
 from checkersProject.board import Board
 from checkersProject.gamestate import Gamestate
