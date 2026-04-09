@@ -1,7 +1,4 @@
-try:
-    import pygame
-except ImportError:
-    pass # This allows the AI logic to run on the web without pygame
+import pygame
 from checkersProject.constant import RED, WHITE, GREEN, SQUARESIZE
 from checkersProject.board import Board
 
