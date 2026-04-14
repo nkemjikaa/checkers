@@ -72,4 +72,5 @@ class Gamestate:
     def aiMove(self, board):
         self.board = board
         self.changeTurn()  
+        
     
