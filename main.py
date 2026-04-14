@@ -60,10 +60,20 @@ def mainFunction():
                     # Using the circle rects for cleaner collision
                     if red_piece.collidepoint(pos):
                         user_color = RED
+                        gamestate.turn = RED
                         menu_active = False
+                        gamestate.update() # Draw the starting board
+                        pygame.display.update()
+                        pygame.time.delay(500)
+                        pygame.event.clear()
                     elif white_piece.collidepoint(pos):
                         user_color = WHITE
+                        gamestate.turn = RED
                         menu_active = False
+                        gamestate.update() # Draw the starting board
+                        pygame.display.update()
+                        pygame.time.delay(500)
+                        pygame.event.clear()
         elif end_active:
             WINDOW.fill(BLACK)
             
@@ -96,12 +106,14 @@ def mainFunction():
                         user_color = None
         
         else:
-            # --- YOUR EXISTING GAME LOGIC ---
-            # Change line 30 to check if it's NOT the user's turn
             if gamestate.turn != user_color: 
                 difficulty = 3
-                # Use the current turn color for the AI
-                value, newBoard = minimax(gamestate.getBoard(), difficulty, gamestate.turn, gamestate)
+                # 1. Figure out what color the AI is
+                ai_color = WHITE if user_color == RED else RED
+                
+                # 2. Pass True for the 'maxplayer' argument
+                # 3. Ensure your minimax function in algorithm.py is updated to accept ai_color
+                value, newBoard = minimax(gamestate.getBoard(), difficulty, True, gamestate, ai_color)
                 gamestate.aiMove(newBoard)
 
             winner = gamestate.winner()
@@ -127,4 +139,3 @@ def mainFunction():
      
 
 mainFunction()
-
